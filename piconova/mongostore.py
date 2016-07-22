@@ -1,4 +1,4 @@
-import pymongo
+from pymongo import MongoClient
 import settings
 from scrapy import log
 
@@ -9,7 +9,7 @@ class MongoDBPipeline(object):
         self.db = settings.MONGODB_DB
         self.col = settings.MONGODB_COLLECTION
 
-        connection = pymongo.Connection(self.server, self.port)
+        connection = MongoClient(self.server, self.port)
         db = connection[self.db]
         self.collection = db[self.col]
 
